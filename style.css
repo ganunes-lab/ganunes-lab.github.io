@@ -1,132 +1,170 @@
 body {
-  margin: 0;
-  font-family: 'Noto Sans JP', sans-serif;
-  background: #020617;
-  color: #fff;
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #020617;
+    color: #fff;
 }
 
 /* BACKGROUND */
 #tokyo-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: radial-gradient(circle at bottom, #020617, #000);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+
+    background: url("images/tokyo.png") no-repeat center center/cover;
+    filter: brightness(0.4);
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top,
+            rgba(2, 6, 23, 1),
+            rgba(2, 6, 23, 0.7),
+            rgba(56, 189, 248, 0.1));
+    z-index: -1;
+    animation: glow 4s infinite;
 }
 
 /* NAV */
 nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .logo {
-  color: #38bdf8;
+    color: #38bdf8;
 }
 
 ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
+    display: flex;
+    gap: 20px;
+    list-style: none;
 }
 
 a {
-  color: #e2e8f0;
-  text-decoration: none;
+    color: #e2e8f0;
+    text-decoration: none;
 }
 
 a:hover {
-  color: #38bdf8;
+    color: #38bdf8;
 }
 
 /* MENU MOBILE */
 .menu-toggle {
-  display: none;
-  cursor: pointer;
+    display: none;
+    cursor: pointer;
 }
 
 /* HERO */
 .hero {
-  text-align: center;
-  padding: 140px 20px;
+    text-align: center;
+    padding: 140px 20px;
 }
 
 .subtitle {
-  color: #94a3b8;
-  letter-spacing: 3px;
+    color: #94a3b8;
+    letter-spacing: 3px;
 }
 
 /* SECTIONS */
 section {
-  padding: 60px;
-  max-width: 1000px;
-  margin: auto;
+    padding: 60px;
+    max-width: 1000px;
+    margin: auto;
 }
 
 /* TITULOS */
 h2::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  background: #38bdf8;
-  margin-top: 5px;
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: #38bdf8;
+    margin-top: 5px;
 }
 
 /* SKILLS */
 .skills span {
-  background: rgba(255,255,255,0.05);
-  padding: 10px 15px;
-  margin: 5px;
-  display: inline-block;
-  border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 8px;
 }
 
 /* CARDS */
 .card {
-  background: rgba(255,255,255,0.03);
-  border-left: 2px solid #38bdf8;
-  padding: 20px;
-  margin-top: 20px;
-  transition: 0.3s;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid #38bdf8;
+    padding: 20px;
+    margin-top: 20px;
+    transition: 0.3s;
 }
 
 .card:hover {
-  background: rgba(255,255,255,0.06);
-  transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(5px);
 }
 
 /* ANIMAÇÃO */
 .fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.8s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.8s ease;
 }
 
 .fade.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* RESPONSIVO */
 @media (max-width: 768px) {
-  ul {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background: #020617;
-  }
+    ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #020617;
+    }
 
-  ul.active {
-    display: flex;
-  }
+    ul.active {
+        display: flex;
+    }
 
-  .menu-toggle {
-    display: block;
-  }
+    .menu-toggle {
+        display: block;
+    }
+}
+
+@keyframes glow {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+#rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
 }
