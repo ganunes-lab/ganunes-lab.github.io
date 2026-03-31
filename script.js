@@ -36,22 +36,16 @@ fetch("https://api.github.com/users/ganunes-lab/repos")
     });
   });
 
-// BACKGROUND TOKYO ANIMADO 🌆
-const canvas = document.getElementById("tokyo-bg");
-const ctx = canvas.getContext("2d");
+// PARALLAX TOKYO 🔥
+document.addEventListener("mousemove", (e) => {
+  const bg = document.getElementById("tokyo-bg");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+  let x = (e.clientX / window.innerWidth - 0.5) * 20;
+  let y = (e.clientY / window.innerHeight - 0.5) * 20;
 
-let buildings = [];
+  bg.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+});
 
-for (let i = 0; i < 60; i++) {
-  buildings.push({
-    x: i * 30,
-    width: 20 + Math.random() * 20,
-    height: Math.random() * 300
-  });
-}
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -75,3 +69,49 @@ function draw() {
 }
 
 draw();
+
+// 🌧️ CHUVA ANIMADA
+const rainCanvas = document.createElement("canvas");
+rainCanvas.id = "rain";
+document.body.appendChild(rainCanvas);
+
+const rctx = rainCanvas.getContext("2d");
+
+rainCanvas.width = window.innerWidth;
+rainCanvas.height = window.innerHeight;
+
+let rainDrops = [];
+
+for (let i = 0; i < 200; i++) {
+  rainDrops.push({
+    x: Math.random() * rainCanvas.width,
+    y: Math.random() * rainCanvas.height,
+    length: Math.random() * 20,
+    speed: Math.random() * 5 + 5
+  });
+}
+
+function drawRain() {
+  rctx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+
+  rctx.strokeStyle = "rgba(56,189,248,0.5)";
+  rctx.lineWidth = 1;
+
+  rainDrops.forEach(drop => {
+    rctx.beginPath();
+    rctx.moveTo(drop.x, drop.y);
+    rctx.lineTo(drop.x, drop.y + drop.length);
+    rctx.stroke();
+
+    drop.y += drop.speed;
+
+    if (drop.y > rainCanvas.height) {
+      drop.y = 0;
+      drop.x = Math.random() * rainCanvas.width;
+    }
+  });
+
+  requestAnimationFrame(drawRain);
+}
+
+drawRain();
