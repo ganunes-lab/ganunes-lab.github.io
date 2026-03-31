@@ -50,9 +50,10 @@ fetch("https://api.github.com/users/ganunes-lab/repos")
     data.slice(0, 6).forEach(repo => {
       container.innerHTML += `
         <div class="card">
+          <img src="https://via.placeholder.com/400x200" />
           <h3>${repo.name}</h3>
-          <p>${repo.description || "Sem descrição"}</p>
-          <a href="${repo.html_url}" target="_blank">Ver projeto</a>
+          <p>${repo.description || "Projeto sem descrição"}</p>
+          <a href="${repo.html_url}" target="_blank">Ver no GitHub</a>
         </div>
       `;
     });
